@@ -1,0 +1,10 @@
+# Ignore CMake build artifacts
+
+build/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+
+data/
+.vscode/
