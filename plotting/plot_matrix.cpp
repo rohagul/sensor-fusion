@@ -1,5 +1,4 @@
 #include "plot_matrix.h"
-
 #include <matplot/matplot.h>
 #include <iostream>
 #include <vector>

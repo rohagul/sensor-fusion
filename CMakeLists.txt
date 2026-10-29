@@ -8,15 +8,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Matplot++ REQUIRED)
 
 add_executable(sensor_fusion
-    main.cpp
-    serial_reader.cpp
-    plot_data_realtime.cpp
-    plot_matrix.cpp
-    linear_fit.cpp
-    synthetic_mag_data.cpp
+    src/main.cpp
+    src/serial_reader.cpp
+    plotting/plot_data_realtime.cpp
+    plotting/plot_matrix.cpp
+    calibration/mag_cal/linear_fit.cpp
 
 )
-
 
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fsanitize=address -fno-omit-frame-pointer")
@@ -63,3 +61,23 @@ target_link_libraries(allan_variance PRIVATE
     z
     ${ARMADILLO_LIBRARIES}
 )
+
+add_executable(test_linear_fit
+    test/test_linear_fit.cpp
+    calibration/mag_cal/synthetic_mag_data.cpp
+    calibration/mag_cal/linear_fit.cpp
+    plotting/plot_data_realtime.cpp
+    plotting/plot_matrix.cpp
+    
+)
+
+target_link_libraries(test_linear_fit PRIVATE
+    Matplot++::matplot
+    /usr/local/lib/Matplot++/libnodesoup.a
+    tiff
+    jpeg
+    z
+    ${ARMADILLO_LIBRARIES}
+
+)
+target_link_libraries(test_linear_fit PRIVATE Eigen3::Eigen)
