@@ -1,7 +1,7 @@
 #include "serial_reader.h"
 #include "../calibration/mag_cal/synthetic_mag_data.h"
 #include "../calibration/mag_cal/linear_fit.h"
-#include "../plots/plot_data_realtime.h"
+#include "../plotting/plot_data_realtime.h"
 #include <termios.h>
 #include <unistd.h>
 #include <chrono>
@@ -11,7 +11,6 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include "../plots/plot_matrix.h"
 
 // ---- Clean shutdown on Ctrl+C -------------------------------------------
 static volatile std::sig_atomic_t g_stop = 0;
