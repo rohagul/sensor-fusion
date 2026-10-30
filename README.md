@@ -10,9 +10,9 @@ A ground-up Attitude and Heading Reference System (AHRS) built on an Arduino UNO
 
 | Component | Part | 
 |---|---|
-| MCU | Arduino UNO (ATmega328P, 2 KB SRAM) |
+| MCU | Arduino UNO  |
 | Accel / Gyro | MPU6050 | 
-| Magnetometer | QMC5883P (I²C `0x2C`) |
+| Magnetometer | QMC5883P  |
 | Barometer | BMP085 | 
 
 All sensors come on a single **GY-87** breakout.
@@ -21,23 +21,7 @@ All sensors come on a single **GY-87** breakout.
 
 ## Architecture
 
-The project is split into two codebases. src/ contains main code for sending and recieving serial data from Arduino as well as calibration for magnetometer to avoid large computational expense on the MC. mpu_arduino/ consists of the Arduino firmware. time_series/ contains main code for generating Allan Variance plots for the sensors. test/ contains code to test the ellipsoid linear programming problem. Calibration of accelerometer and gyro remain on the arduino. 
-
-## Development Environment
-
-- **Firmware:** PlatformIO in VS Code, target ATmega328P (AVR)
-- **Host tool:** C++ with [Eigen](https://eigen.tuxfamily.org/), wildcard Makefile, WSL2
-- **USB passthrough:** [usbipd-win](https://github.com/dorssel/usbipd-win), device appears as `/dev/ttyACM0`
-- **Serial:** 9600 baud, `VMIN=0` / `VTIME=5`
-
-### Attaching the board in WSL2
-
-`attach` must be repeated every WSL session:
-
-```powershell
-usbipd bind --busid <BUSID>            # one-time (add --force here if needed)
-usbipd attach --wsl --busid <BUSID>    # every session
-```
+The project is split into two codebases. src/ contains main code for sending and receiving serial data from Arduino as well as calibration for magnetometer to avoid large computational expense on the MCU. mpu_arduino/ consists of the Arduino firmware. time_series/ contains main code for generating Allan Variance plots for the sensors. test/ contains code to test the ellipsoid linear programming problem. Calibration of accelerometer and gyro remain on the arduino. 
 
 ## References
 
